@@ -7,7 +7,12 @@ const Todo = ({ onClick, completed, text, onDeleteTodo }) => (
     }}
   >
     <span onClick={onClick}>{text}</span>
-    <a href='#' onClick={onDeleteTodo}><i className='fa fa-remove'></i></a>
+    <a href='#' onClick={
+    	e => {
+    		e.preventDefault()
+    		onDeleteTodo()
+    	}
+    }><i className='fa fa-remove'></i></a>
   </li>
 )
 

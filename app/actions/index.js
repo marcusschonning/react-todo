@@ -28,12 +28,10 @@ export const getAllTodos = (todos, dispatch) => {
 }
 
 export const addTodo = (text, dispatch) => {
-	console.log(text)
   return (dispatch) => {
   	fetch('./../app/api/insert.php?todo='+text).then(function(res) {
   		return res.text();
   	}).then(function(insertId) {
-  		console.log(insertId);
   		dispatch({
   			type: 'ADD_TODO',
   			id: parseInt(insertId, 10),
@@ -51,7 +49,6 @@ export const setVisibilityFilter = (filter) => {
 }
 
 export const toggleTodo = (id, completed, dispatch) => {
-	// console.log('completed', !completed);
 	return (dispatch) => {
 		fetch('./../app/api/update.php?todoId=' + id + '&completed=' + !completed).then(function(res) {
 			return res.text();
@@ -67,8 +64,6 @@ export const toggleTodo = (id, completed, dispatch) => {
 }
 
 export const deleteTodo = (id, dispatch) => {
-	// console.log('completed', !completed);
-	console.log('DELETE NR ' + id);
 	return (dispatch) => {
 		fetch('./../app/api/delete.php?id=' + id).then(function(res) {
 			return res.text();
