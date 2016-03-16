@@ -1,3 +1,6 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractCSS = new ExtractTextPlugin('style.css');
+
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlWebpackPluginConf = new HtmlWebpackPlugin({
 	template: __dirname + '/app/index.html',
@@ -10,7 +13,7 @@ module.exports = {
 		'./app/index.js'
 	],
 	output: {
-		path: __dirname + '/app',
+		path: __dirname + '/dist/',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -22,8 +25,13 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: ["style", "css", "sass"]
+				exclude: /node_modules/,
+				loader: ExtractCSS.extract(["css", "sass?outputStyle=compressed"])
 			}
 		]
-	}
+	},
+	plugins: [
+		ExtractCSS,
+		HtmlWebpackPluginConf
+	]
 };
