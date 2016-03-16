@@ -45,9 +45,7 @@ class TodosFetcher extends React.Component {
     }
 
     componentWillUpdate () {
-    	console.log(this.props.todos);
-    	console.log(this)
-    	console.log('hejhej');
+
     }
 
     render() {
