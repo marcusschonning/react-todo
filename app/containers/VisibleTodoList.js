@@ -44,10 +44,6 @@ class TodosFetcher extends React.Component {
     	this.props.fetchAllTodos();
     }
 
-    componentWillUpdate () {
-
-    }
-
     render() {
         return <TodoList {...this.props} />;
     }

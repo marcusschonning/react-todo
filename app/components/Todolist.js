@@ -1,18 +1,25 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo';
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 
 require('../styles/todo.scss');
 
 const TodoList = ({ todos, onTodoClick, onDeleteTodo }) => (
   <ul className='list'>
+	<ReactCSSTransitionGroup
+		transitionName='listItem'
+		transitionEnterTimeout={500}
+		transitionLeaveTimeout={500}
+	>
     {todos.map(todo =>
-      <Todo
-        key={todo.id}
-        {...todo}
-        onClick={() => onTodoClick(todo.id, todo.completed)}
-        onDeleteTodo={() => onDeleteTodo(todo.id)}
-      />
+			<Todo
+				key={todo.id}
+				{...todo}
+				onClick={() => onTodoClick(todo.id, todo.completed)}
+				onDeleteTodo={() => onDeleteTodo(todo.id)}
+			/>
     )}
+	</ReactCSSTransitionGroup>
   </ul>
 )
 
